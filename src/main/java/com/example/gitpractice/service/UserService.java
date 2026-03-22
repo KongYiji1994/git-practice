@@ -48,4 +48,16 @@ public class UserService {
     public boolean delete(Long id) {
         return users.removeIf(user -> user.getId().equals(id));
     }
+
+    // 统计用户总数
+    public long count() {
+        return users.size();
+    }
+
+    // 按邮箱查询用户
+    public Optional<User> findByEmail(String email) {
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst();
+    }
 }

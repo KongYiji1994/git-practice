@@ -53,4 +53,18 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    // 统计用户总数
+    @GetMapping("/count")
+    public long getUserCount() {
+        return userService.count();
+    }
+
+    // 按邮箱查询用户
+    @GetMapping("/email")
+    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
+        return userService.findByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
