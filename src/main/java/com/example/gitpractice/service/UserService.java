@@ -48,4 +48,11 @@ public class UserService {
     public boolean delete(Long id) {
         return users.removeIf(user -> user.getId().equals(id));
     }
+
+    // 按名字搜索用户
+    public List<User> searchByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().contains(name))
+                .collect(java.util.stream.Collectors.toList());
+    }
 }

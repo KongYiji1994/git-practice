@@ -53,4 +53,10 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    // 按名字搜索用户
+    @GetMapping("/search")
+    public List<User> searchUsers(@RequestParam String name) {
+        return userService.searchByName(name);
+    }
 }
