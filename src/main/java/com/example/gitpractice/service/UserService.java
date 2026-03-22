@@ -49,6 +49,13 @@ public class UserService {
         return users.removeIf(user -> user.getId().equals(id));
     }
 
+    // 按名字搜索用户
+    public List<User> searchByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().contains(name))
+                .collect(java.util.stream.Collectors.toList());
+    }
+
     // 统计用户总数
     public long count() {
         return users.size();
