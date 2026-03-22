@@ -55,4 +55,16 @@ public class UserService {
                 .filter(user -> user.getName().contains(name))
                 .collect(java.util.stream.Collectors.toList());
     }
+
+    // 统计用户总数
+    public long count() {
+        return users.size();
+    }
+
+    // 按邮箱查询用户
+    public Optional<User> findByEmail(String email) {
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst();
+    }
 }
